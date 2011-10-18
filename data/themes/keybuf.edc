@@ -1,269 +1,269 @@
 collections {
-  group {
-    name: "modules/keybuf/hint";
-    images {
-      image: "bt_dis_base.png" COMP;
-      image: "bt_dis_shine.png" COMP;
-      image: "bt_dis_hilight.png" COMP;
-      image: "toolbar_sel.png" COMP;
-    }
-    parts {
-      part {
-        name: "bar_base";
-        type: RECT;
-        mouse_events: 0;
-        description {
-          state: "default" 0.0;
-          color: 215 215 215 255;
-        }
+   group {
+      name: "modules/keybuf/hint";
+      images {
+         image: "bt_dis_base.png" COMP;
+         image: "bt_dis_shine.png" COMP;
+         image: "bt_dis_hilight.png" COMP;
+         image: "toolbar_sel.png" COMP;
       }
-      part {
-        name: "bar_bg";
-        mouse_events: 0;
-        description {
-          state: "default" 0.0;
-          min: 48 48;
-          rel1.offset: -2 -1;
-          rel2.offset: 1 0;
-          image {
-            normal: "bt_dis_base.png";
-            border: 4 4 4 4;
-          }
-        }
+      parts {
+         part {
+            name: "bar_base";
+            type: RECT;
+            mouse_events: 0;
+            description {
+               state: "default" 0.0;
+               color: 215 215 215 255;
+            }
+         }
+         part {
+            name: "bar_bg";
+            mouse_events: 0;
+            description {
+               state: "default" 0.0;
+               min: 48 48;
+               rel1.offset: -2 -1;
+               rel2.offset: 1 0;
+               image {
+                  normal: "bt_dis_base.png";
+                  border: 4 4 4 4;
+               }
+            }
+         }
+         part {
+            name: "bg";
+            mouse_events: 0;
+            description {
+               state: "default" 0.0;
+               color: 255 255 255 0;
+               image {
+                  normal: "toolbar_sel.png";
+                  border: 3 3 2 2;
+               }
+               fill.smooth: 1;
+               rel1.offset: 0 -1;
+               rel2.offset: 2 -1;
+            }
+            description {
+               state: "selected" 0.0;
+               inherit: "default" 0.0;
+               color: 255 255 255 255;
+            }
+         }
+         part {
+            name: "e.text.label";
+            type: TEXT;
+            mouse_events: 0;
+            scale: 1;
+            description {
+               state: "default" 0.0;
+               visible: 1;
+               color: 60 60 60 255;
+               rel1 {
+                  relative: 0.0 0.0;
+                  offset: 8 8;
+               }
+               rel2.offset: -9 -9;
+               text {
+                  font: "Sans:style=Bold";
+                  size: 32;
+                  text: "J";
+               }
+            }
+            description {
+               state: "selected" 0.0;
+               inherit: "default" 0.0;
+               color: 244 244 244 255;
+            }
+         }
+         part {
+            name: "over_shine";
+            mouse_events: 0;
+            description {
+               state: "default" 0.0;
+               rel1 {
+                  to: "bar_bg";
+                  offset: -2 -2;
+               }
+               rel2 {
+                  to: "bar_bg";
+                  offset: 1 2;
+               }
+               image {
+                  normal: "bt_dis_shine.png";
+                  border: 4 4 4 4;
+               }
+            }
+         }
+         part {
+            name: "over_hi";
+            mouse_events: 0;
+            description {
+               state: "default" 0.0;
+               rel1 {
+                  to: "bar_bg";
+                  offset: -2 -2;
+               }
+               rel2 {
+                  to: "bar_bg";
+                  offset: 1 2;
+                  relative: 1.0 0.45;
+               }
+               image {
+                  normal: "bt_dis_hilight.png";
+                  border: 4 4 4 0;
+               }
+               color: 255 255 255 235;
+            }
+         }
       }
-      part {
-        name: "bg";
-        mouse_events: 0;
-        description {
-          state: "default" 0.0;
-          color: 255 255 255 0;
-          image {
-            normal: "toolbar_sel.png";
-            border: 3 3 2 2;
-          }
-          fill.smooth: 1;
-          rel1.offset: 0 -1;
-          rel2.offset: 2 -1;
-        }
-        description {
-          state: "selected" 0.0;
-          inherit: "default" 0.0;
-          color: 255 255 255 255;
-        }
+      programs {
+         program {
+            name: "sel";
+            signal: "e,state,selected";
+            source: "e";
+            action: STATE_SET "selected" 0.0;
+            transition: SINUSOIDAL 0.2;
+            target: "bg";
+            target: "e.text.label";
+         }
+         program {
+            name: "unsel";
+            signal: "e,state,unselected";
+            source: "e";
+            action: STATE_SET "default" 0.0;
+            transition: SINUSOIDAL 0.3;
+            target: "bg";
+            target: "e.text.label";
+         }
       }
-      part {
-        name: "e.text.label";
-        type: TEXT;
-        mouse_events: 0;
-        scale: 1;
-        description {
-          state: "default" 0.0;
-          visible: 1;
-          color: 60 60 60 255;
-          rel1 {
-            relative: 0.0 0.0;
-            offset: 8 8;
-          }
-          rel2.offset: -9 -9;
-          text {
-            font: "Sans:style=Bold";
-            size: 32;
-            text: "J";
-          }
-        }
-        description {
-          state: "selected" 0.0;
-          inherit: "default" 0.0;
-          color: 244 244 244 255;
-        }
+   }
+   group {
+      name: "modules/keybuf/cwin";
+      images {
+         image: "inset_sunk.png" COMP;
       }
-      part {
-        name: "over_shine";
-        mouse_events: 0;
-        description {
-          state: "default" 0.0;
-          rel1 {
-            to: "bar_bg";
-            offset: -2 -2;
-          }
-          rel2 {
-            to: "bar_bg";
-            offset: 1 2;
-          }
-          image {
-            normal: "bt_dis_shine.png";
-            border: 4 4 4 4;
-          }
-        }
+      parts {
+         part {
+            name: "clip";
+            type: RECT;
+            mouse_events: 0;
+            description {
+               state: "default" 0.0;
+               rel1.to: "command_border";
+               rel2.to: "command_border";
+            }
+         }
+         part {
+            name: "error";
+            type: RECT;
+            mouse_events: 0;
+            clip_to: "error_clip";
+            description {
+               min: 256 36;
+               state: "default" 0.0;
+               rel1.to: "command_border";
+               rel2.to: "command_border";
+               color: 255 255 255 255;
+            }
+         }
+         part {
+            name: "error_clip";
+            type: RECT;
+            mouse_events: 0;
+            clip_to: "clip";
+            description {
+               state: "default" 0.0;
+               rel1.to: "command_border";
+               rel2.to: "command_border";
+               color: 255 255 255 255;
+            }
+         }
+         part {
+            name: "command_entry_clip";
+            type: RECT;
+            mouse_events: 0;
+            clip_to: "clip";
+            description {
+               state: "default" 0.0;
+               visible: 1;
+               rel1 {
+                  offset: 6 3;
+                  to: "command_border";
+               }
+               rel2 {
+                  offset: -7 -4;
+                  to: "command_border";
+               }
+            }
+         }
+         part {
+            name: "e.text.command";
+            type: TEXT;
+            clip_to: "command_entry_clip";
+            scale: 1;
+            description {
+               state: "default" 0.0;
+               fixed: 1 1;
+               align: 0.0 0.5;
+               rel1 {
+                  relative: 0.0 0.0;
+                  offset: 0 0;
+                  to: "command_entry_clip";
+               }
+               rel2 {
+                  relative: 0.0 1.0;
+                  offset: 0 0;
+                  to: "command_entry_clip";
+               }
+               color: 0 0 0 255;
+               text {
+                  text: "/hi there";
+                  font: "Sans";
+                  size: 16;
+                  align: 0.0 0.5;
+                  min: 1 1;
+               }
+            }
+         }
+         part {
+            name: "cursor";
+            type: RECT;
+            mouse_events: 0;
+            clip_to: "command_entry_clip";
+            description {
+               state: "default" 0.0;
+               min: 1 16;
+               max: 1 16;
+               align: 0.0 0.5;
+               rel1 {
+                  relative: 1.0 0.0;
+                  offset: 0 -3;
+                  to: "e.text.command";
+               }
+               rel2 {
+                  relative: 1.0 1.0;
+                  offset: 1 1;
+                  to: "e.text.command";
+               }
+               color: 0 0 0 255;
+            }
+         }
+         part {
+            name: "command_border";
+            mouse_events: 0;
+            clip_to: "error_clip";
+            description {
+               state: "default" 0.0;
+               image {
+                  normal: "inset_sunk.png";
+                  middle: 0;
+                  border: 7 7 7 7;
+               }
+               fill.smooth: 0;
+            }
+         }
       }
-      part {
-        name: "over_hi";
-        mouse_events: 0;
-        description {
-          state: "default" 0.0;
-          rel1 {
-            to: "bar_bg";
-            offset: -2 -2;
-          }
-          rel2 {
-            to: "bar_bg";
-            offset: 1 2;
-            relative: 1.0 0.45;
-          }
-          image {
-            normal: "bt_dis_hilight.png";
-            border: 4 4 4 0;
-          }
-          color: 255 255 255 235;
-        }
-      }
-    }
-    programs {
-      program {
-        name: "sel";
-        signal: "e,state,selected";
-        source: "e";
-        action: STATE_SET "selected" 0.0;
-        transition: SINUSOIDAL 0.2;
-        target: "bg";
-        target: "e.text.label";
-      }
-      program {
-        name: "unsel";
-        signal: "e,state,unselected";
-        source: "e";
-        action: STATE_SET "default" 0.0;
-        transition: SINUSOIDAL 0.3;
-        target: "bg";
-        target: "e.text.label";
-      }
-    }
-  }
-  group {
-    name: "modules/keybuf/cwin";
-    images {
-      image: "inset_sunk.png" COMP;
-    }
-    parts {
-      part {
-        name: "clip";
-        type: RECT;
-        mouse_events: 0;
-        description {
-          state: "default" 0.0;
-          rel1.to: "command_border";
-          rel2.to: "command_border";
-        }
-      }
-      part {
-        name: "error";
-        type: RECT;
-        mouse_events: 0;
-        clip_to: "error_clip";
-        description {
-          min: 256 36;
-          state: "default" 0.0;
-          rel1.to: "command_border";
-          rel2.to: "command_border";
-          color: 255 255 255 255;
-        }
-      }
-      part {
-        name: "error_clip";
-        type: RECT;
-        mouse_events: 0;
-        clip_to: "clip";
-        description {
-          state: "default" 0.0;
-          rel1.to: "command_border";
-          rel2.to: "command_border";
-          color: 255 255 255 255;
-        }
-      }
-      part {
-        name: "command_entry_clip";
-        type: RECT;
-        mouse_events: 0;
-        clip_to: "clip";
-        description {
-          state: "default" 0.0;
-          visible: 1;
-          rel1 {
-            offset: 6 3;
-            to: "command_border";
-          }
-          rel2 {
-            offset: -7 -4;
-            to: "command_border";
-          }
-        }
-      }
-      part {
-        name: "e.text.command";
-        type: TEXT;
-        clip_to: "command_entry_clip";
-        scale: 1;
-        description {
-          state: "default" 0.0;
-          fixed: 1 1;
-          align: 0.0 0.5;
-          rel1 {
-            relative: 0.0 0.0;
-            offset: 0 0;
-            to: "command_entry_clip";
-          }
-          rel2 {
-            relative: 0.0 1.0;
-            offset: 0 0;
-            to: "command_entry_clip";
-          }
-          color: 0 0 0 255;
-          text {
-            text: "/hi there";
-            font: "Sans";
-            size: 16;
-            align: 0.0 0.5;
-            min: 1 1;
-          }
-        }
-      }
-      part {
-        name: "cursor";
-        type: RECT;
-        mouse_events: 0;
-        clip_to: "command_entry_clip";
-        description {
-          state: "default" 0.0;
-          min: 1 16;
-          max: 1 16;
-          align: 0.0 0.5;
-          rel1 {
-            relative: 1.0 0.0;
-            offset: 0 -3;
-            to: "e.text.command";
-          }
-          rel2 {
-            relative: 1.0 1.0;
-            offset: 1 1;
-            to: "e.text.command";
-          }
-          color: 0 0 0 255;
-        }
-      }
-      part {
-        name: "command_border";
-        mouse_events: 0;
-        clip_to: "error_clip";
-        description {
-          state: "default" 0.0;
-          image {
-            normal: "inset_sunk.png";
-            middle: 0;
-            border: 7 7 7 7;
-          }
-          fill.smooth: 0;
-        }
-      }
-    }
-  }
+   }
 }
