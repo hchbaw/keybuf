@@ -7,10 +7,3 @@ Installation:
 % ./autogen.sh --with-theme-image-source-dir=/c/e/trunk/e/data/themes/images
 % make && make install
 <
-
-TODO:
-add more keydowns especially for cmd.
-hint windows should not intersect each other.
-current desk vs whole desks vs xinerama screens.
-configuration option for labeling, please reocompile after changing "AOEUI"
-with your tastes shortly.
