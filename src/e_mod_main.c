@@ -25,10 +25,10 @@ e_modapi_init(E_Module *m)
    if (act)
      {
 	act->func.go = _keybuf_action_keybuf_cb;
-	e_action_predef_name_set(_("Keybuf"),
-				 _("Activate Keybuf"),
-				 "keybuf",
-				 NULL, NULL, 0);
+	e_action_predef_name_set(_("Keybuf"), _("Current Desk"),
+				 "keybuf", "desk", NULL, 0);
+	e_action_predef_name_set(_("Keybuf"), _("Curretn Zone"),
+				 "keybuf", "zone", NULL, 0);
      }
    return m;
 }
@@ -65,5 +65,16 @@ _keybuf_action_keybuf_cb(E_Object *obj, const char *params)
 	  zone = e_util_zone_current_get(e_manager_current_get());
      }
    if (!zone) zone = e_util_zone_current_get(e_manager_current_get());
-   if (zone) keybuf_show(zone);
+   if (zone)
+     {
+	if (params)
+	  {
+	     if (!strcmp(params, "desk"))
+	       keybuf_show(zone, keybuf_show_cb_current_desk);
+	     else if (!strcmp(params, "zone"))
+	       keybuf_show(zone, keybuf_show_cb_current_zone);
+	  }
+	else
+	  keybuf_show(zone, keybuf_show_cb_current_desk);
+     }
 }

@@ -1,5 +1,6 @@
+vs xinerama screens.
+calc hint's size on the pager.
 add more keydowns especially for cmd.
 hint windows should not intersect each other.
-current desk vs whole desks vs xinerama screens.
 configuration option for labeling, please reocompile after changing "AOEUI"
 with your tastes shortly.
