@@ -66,7 +66,7 @@ collections {
                }
                rel2.offset: -9 -9;
                text {
-                  font: "Sans:style=Bold";
+                  font: "Sans:weight=bold";
                   size: 32;
                   text: "J";
                }
@@ -346,7 +346,7 @@ collections {
                color: 224 224 224 255;
                color3: 0 0 0 64;
                text {
-                  font: "Sans:style=Bold";
+                  font: "Sans:weight=bold";
                   size: 10;
                   align: 0.5 0.0;
                   min: 1 1;
@@ -528,7 +528,7 @@ collections {
                color: 0 0 0 0;
                color_class: "module_label";
                text {
-                  font: "Sans:style=Bold";
+                  font: "Sans:weight=bold";
                   size: 8;
                   align: 0.5 0.5;
                   text_class: "module_small";
@@ -997,8 +997,8 @@ collections {
                }
                rel2.offset: -3 -4;
                text {
-                  font: "Sans:style=Bold";
-                  size: 16;
+                  font: "Sans:weight=bold";
+                  size: 10;
                   text: "J";
                }
             }
