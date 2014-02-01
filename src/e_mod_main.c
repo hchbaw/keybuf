@@ -55,12 +55,12 @@ _keybuf_action_keybuf_cb(E_Object *obj, const char *params)
 
    if (obj)
      {
-	if (obj->type == E_MANAGER_TYPE)
+	if (obj->type == (int)E_MANAGER_TYPE)
 	  zone = e_util_zone_current_get((E_Manager *)obj);
-	else if (obj->type == E_CONTAINER_TYPE)
-	  zone = e_util_zone_current_get(((E_Container *)obj)->manager);
+	else if (obj->type == (int)E_COMP_TYPE)
+	  zone = e_zone_current_get((E_Comp *)obj);
 	else if (obj->type == E_ZONE_TYPE)
-	  zone = e_util_zone_current_get(((E_Zone *)obj)->container->manager);
+	  zone = (E_Zone *)obj;
 	else
 	  zone = e_util_zone_current_get(e_manager_current_get());
      }

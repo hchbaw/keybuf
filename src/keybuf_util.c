@@ -84,23 +84,16 @@ keybuf_util_find(const Eina_List *list, Eina_Bool (*pred)(const void *data, cons
 void *
 keybuf_util_accum_zone(void * (*proc)(E_Zone *zone, void *a), void *a)
 {
-   Eina_List *ms, *l, *l2, *l3;
-   E_Manager *m;
+   Eina_List *lc, *lz;
+   E_Comp *c;
+   E_Zone *z;
 
-   ms = e_manager_list();
-   EINA_LIST_FOREACH(ms, l, m)
+   EINA_LIST_FOREACH(e_comp_list(), lc, c)
      {
-	E_Container *c;
-
-	EINA_LIST_FOREACH(m->containers, l2, c)
-	  {
-	     E_Zone *z;
-
-	     EINA_LIST_FOREACH(c->zones, l3, z)
-	       {
-		  a = (*proc)(z, a);
-	       }
-	  }
+        EINA_LIST_FOREACH(c->zones, lz, z)
+          {
+             a = (*proc)(z, a);
+          }
      }
 
    return a;
